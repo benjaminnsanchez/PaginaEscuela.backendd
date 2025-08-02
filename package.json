@@ -4,7 +4,8 @@
   "description": "pagina institucional de la escuela tecnica nro1 Rafael Canton",
   "main": "index.js",
   "scripts": {
-    "dev:1": "nodemon ./PaginaEscuela.Backend/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
