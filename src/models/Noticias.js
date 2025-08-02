@@ -36,5 +36,4 @@ const noticiaSchema = new Schema({
       required: true
     }
 })
-const Item = model('Noticias', noticiaSchema)
-module.exports = Item
+module.exports = model('Noticias', noticiaSchema)

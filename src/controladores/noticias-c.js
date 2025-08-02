@@ -1,5 +1,5 @@
 const NoticiasCRL = {}
-const { Item } = require('../models/Noticias')
+const Item = require('../models/Noticias')
 NoticiasCRL.crearNoticia = async (req, res) => {
   try {
     const params = req.body
