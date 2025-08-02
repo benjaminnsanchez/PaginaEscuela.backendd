@@ -19,4 +19,13 @@ NoticiasCRL.crearNoticia = async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 }
+NoticiasCRL.crearNoticia = async (req, res) => {
+  try {
+    const items = await Item.find()
+    res.json(items)
+    console.log(items)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
 module.exports = NoticiasCRL

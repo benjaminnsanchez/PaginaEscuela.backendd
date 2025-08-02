@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const router = Router()
-const { crearNoticia } = require('../controladores/noticias-c')
-router.post('/notas/agregar', crearNoticia)
-
+const { crearNoticia, obtenerNoticias } = require('../controladores/noticias-c')
+router.post('/noticias/agregar', crearNoticia)
+router.get('/noticias/obtenerTodas', obtenerNoticias)
 module.exports = router
