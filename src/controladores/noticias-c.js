@@ -19,7 +19,7 @@ NoticiasCRL.crearNoticia = async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 }
-NoticiasCRL.crearNoticia = async (req, res) => {
+NoticiasCRL.obtenerNoticias = async (req, res) => {
   try {
     const items = await Item.find()
     res.json(items)
