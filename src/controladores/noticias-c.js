@@ -21,11 +21,16 @@ NoticiasCRL.crearNoticia = async (req, res) => {
 }
 NoticiasCRL.obtenerNoticias = async (req, res) => {
   try {
+    const { limit = 10, page = 1 } = req.query
     const items = await Item.find()
+      .sort({ fecha: -1 })
+      .limit(parseInt(limit))
+      .skip((page - 1) * limit)
     res.json(items)
-    console.log(items)
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    console.error('Error al obtener noticias:', error.message)
+    res.status(500).json({ error: 'Error interno del servidor' })
   }
 }
+
 module.exports = NoticiasCRL
