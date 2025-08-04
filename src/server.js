@@ -1,11 +1,13 @@
 const express = require('express')
 const path = require('path')
 const cors = require('cors')
+
 const compression = require('compression')
 // Inicialización de la app
 const app = express()
 // Settings
 app.set('port', process.env.PORT || 3000)
+
 // Middlewares
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
