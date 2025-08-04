@@ -59,7 +59,7 @@ NoticiasCRL.actualizarNoticia = async (req, res) => {
         imagen: params.imagen,
         autor: params.autor,
         categoria: params.categoria
-      }, { new: true } // Devuelve el documento actualizado
+      }, { new: true }
     )
     if (!noticiaActualizado) {
       return res.status(404).json({ error: 'Noticia no encontrada' })
