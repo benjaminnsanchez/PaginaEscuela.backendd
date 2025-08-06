@@ -1,25 +1,43 @@
 const NoticiasCRL = {}
 const Item = require('../models/Noticias')
+require('dotenv').config()
 const { verUsoDeAlmacenamiento } = require('../datebase')
+const cloudinary = require('cloudinary').v2
+cloudinary.config({
+  cloud_name: 'dtaounixm',
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET_KEY
+})
+function subirImagenABuffer (buffer) {
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
+      if (error) return reject(error)
+      resolve(result)
+    }).end(buffer)
+  })
+}
+
 NoticiasCRL.crearNoticia = async (req, res) => {
   try {
+    const result = await subirImagenABuffer(req.file.buffer)
     const params = req.body
+
     const noticia = new Item({
       titulo: params.titulo,
       desc_corta: params.desc_corta,
       desc_larga: params.desc_larga,
       fecha: params.fecha,
-      imagen: params.imagen,
+      imagen: result.secure_url,
       autor: params.autor,
       categoria: params.categoria
     })
-
     const savedNoticia = await noticia.save()
     res.status(201).json(savedNoticia)
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
 }
+
 NoticiasCRL.obtenerNoticias = async (req, res) => {
   try {
     const { limit = 10, page = 1 } = req.query
