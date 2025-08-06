@@ -19,6 +19,13 @@ function subirImagenABuffer (buffer) {
 
 NoticiasCRL.crearNoticia = async (req, res) => {
   try {
+    console.log('BODY:', req.body)
+    console.log('FILE:', req.file)
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'No se envió ninguna imagen' })
+    }
+
     const result = await subirImagenABuffer(req.file.buffer)
     const params = req.body
 
@@ -31,13 +38,14 @@ NoticiasCRL.crearNoticia = async (req, res) => {
       autor: params.autor,
       categoria: params.categoria
     })
+
     const savedNoticia = await noticia.save()
     res.status(201).json(savedNoticia)
   } catch (error) {
+    console.error('Error al crear noticia:', error.message)
     res.status(500).json({ error: error.message })
   }
 }
-
 NoticiasCRL.obtenerNoticias = async (req, res) => {
   try {
     const { limit = 10, page = 1 } = req.query
