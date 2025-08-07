@@ -15,6 +15,11 @@ const noticiaSchema = new Schema({
     type: String,
     required: true
   },
+  cuerpo:
+  {
+    type: String,
+    required: true
+  },
   fecha:
   {
     type: Date,
