@@ -10,7 +10,7 @@ cloudinary.config({
 })
 function subirImagenABuffer (buffer) {
   return new Promise((resolve, reject) => {
-    cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
+    cloudinary.uploader.upload_stream({ resource_type: 'image', transformation: [{ width: 500, height: 300, crop: 'fill', gravity: 'auto' }, { fetch_format: 'webp', quality: 'auto' }] }, (error, result) => {
       if (error) return reject(error)
       resolve(result)
     }).end(buffer)
