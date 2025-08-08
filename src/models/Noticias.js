@@ -1,4 +1,6 @@
+// importa lo necesario para poder crear un esquema
 const { Schema, model } = require('mongoose')
+// se crea un nuevo esquema
 const noticiaSchema = new Schema({
   titulo:
   {
@@ -23,6 +25,7 @@ const noticiaSchema = new Schema({
   fecha:
   {
     type: Date,
+    // pone la fecha en la que e crea la noticia
     default: Date.now
   },
   imagen:
@@ -41,4 +44,5 @@ const noticiaSchema = new Schema({
       required: true
     }
 })
+// exporta el modelo
 module.exports = model('Noticias', noticiaSchema)

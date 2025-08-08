@@ -1,12 +1,13 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
-
+// obtiene el string que para conectarse a la base de datos desde el .env
 const mongoUrl = process.env.mongoUrl
+// se conecta a la base de datos
 mongoose.connect(mongoUrl)
-  .then(() => console.log('✅ Conectado a MongoDB'))
+  .then(() => console.log('Conectado a MongoDB'))
   .catch((err) => console.error(' Error de conexión:', err))
+  // todo esto de abajo lo podes ignorar
 const { MongoClient } = require('mongodb')
-
 async function verUsoDeAlmacenamiento () {
   await mongoose.connect(mongoUrl)
 

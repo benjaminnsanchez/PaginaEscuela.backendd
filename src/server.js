@@ -1,11 +1,9 @@
 const express = require('express')
-const path = require('path')
 const cors = require('cors')
-
 const compression = require('compression')
 // Inicialización de la app
 const app = express()
-// Settings
+// hace que el puerto sea el 3000
 app.set('port', process.env.PORT || 3000)
 
 // Middlewares
@@ -26,6 +24,5 @@ app.use(cors({
 }))
 // Rutas
 app.use(require('./rutas/Noticias-rutas'))
-// archivo estático
-app.use(express.static(path.join(__dirname, 'public')))
+
 module.exports = app
